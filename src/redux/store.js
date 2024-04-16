@@ -1,8 +1,9 @@
-import { createStore, combineReducers } from "redux";
-import wallet from "./modules/wallet";
+import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import wallet from "./slices/wallet";
 
 const rootReducer = combineReducers({
     wallet,
 });
 
-export default createStore(rootReducer);
+export default configureStore({ reducer: rootReducer });
