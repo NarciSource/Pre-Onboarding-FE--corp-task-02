@@ -1,23 +1,31 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setMoney, setCurrency } from "../redux/slices/wallet";
-import ExchangeComp from "./ExchangeComp";
+import { setMoney, setCurrency, fetchExchange } from "../redux/slices/wallet";
 
 function InputComp() {
-    const currencies = ["USD", "CAD", "KRW", "HKD", "JPY", "CNY"];
-
     const dispatch = useDispatch(); // noticer
     const sourceMoney = useSelector((state) => state.wallet.money); // observer
     const sourceCurrency = useSelector((state) => state.wallet.currency);
+    const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
+
+    useEffect(() => {
+        dispatch(fetchExchange({ base: sourceCurrency, symbols: targetCurrencies }));
+    }, []);
 
     return (
         <div>
             <input value={sourceMoney} onChange={(e) => dispatch(setMoney(e.target.value))}></input>
-            <select value={sourceCurrency} onChange={(e) => dispatch(setCurrency(e.target.value))}>
-                {currencies.map((currency, idx) => (
+            <select
+                value={sourceCurrency}
+                onChange={(e) => {
+                    dispatch(setCurrency(e.target.value));
+                    dispatch(fetchExchange({ base: sourceCurrency, symbols: targetCurrencies }));
+                }}
+            >
+                {[sourceCurrency, ...targetCurrencies].map((currency, idx) => (
                     <option value={currency}> {currency}</option>
                 ))}
             </select>
-            <ExchangeComp></ExchangeComp>
         </div>
     );
 }

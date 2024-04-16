@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import callExchange from "../../network/callExchange";
 
+const currencies = ["USD", "CAD", "KRW", "HKD", "JPY", "CNY"];
+const default_currency = currencies[0];
 const initialState = {
     money: 0,
-    currency: "USD",
+    currency: default_currency,
+    targetCurrencies: currencies.filter((currency) => currency !== default_currency),
     exchangeRate: {},
     status: "prepend",
 };
@@ -22,6 +25,7 @@ const walletSlice = createSlice({
         },
         setCurrency: (state, action) => {
             state.currency = action.payload;
+            state.targetCurrencies = currencies.filter((currency) => currency !== state.currency);
         },
     },
     extraReducers: (builder) => {
