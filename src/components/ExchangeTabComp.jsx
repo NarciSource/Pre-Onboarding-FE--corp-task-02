@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-function TransTabComp() {
+function ExchangeTabComp() {
     const sourceMoney = useSelector((state) => state.wallet.money); // observer
     const exchangeRate = useSelector((state) => state.wallet.exchangeRate);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
@@ -72,4 +72,4 @@ const TabContents = styled.div`
     }
 `;
 
-export default TransTabComp;
+export default ExchangeTabComp;

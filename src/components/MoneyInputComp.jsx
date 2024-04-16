@@ -3,26 +3,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMoney, setCurrency, fetchExchange } from "../redux/slices/wallet";
 import styled from "styled-components";
 
-function InputComp() {
-    const dispatch = useDispatch(); // noticer
-    const sourceMoney = useSelector((state) => state.wallet.money); // observer
-    const sourceCurrency = useSelector((state) => state.wallet.currency);
+function MoneyComp() {
+    // noticer
+    const dispatch = useDispatch();
+    // observer
+    const money = useSelector((state) => state.wallet.money);
+    const currency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
-
+    // action
     const setCurrencyWithExchange = (value) => (dispatch, getState) => {
         dispatch(setCurrency(value));
         dispatch(fetchExchange({ base: getState().wallet.currency, symbols: getState().wallet.targetCurrencies }));
     };
 
     useEffect(() => {
-        dispatch(setCurrencyWithExchange(sourceCurrency));
+        dispatch(setCurrencyWithExchange(currency));
     }, []);
 
     return (
         <InputDiv>
-            <input value={sourceMoney} onChange={(e) => dispatch(setMoney(e.target.value))}></input>
-            <select value={sourceCurrency} onChange={(e) => dispatch(setCurrencyWithExchange(e.target.value))}>
-                {[sourceCurrency, ...targetCurrencies].map((currency, idx) => (
+            <input value={money} onChange={(e) => dispatch(setMoney(e.target.value))}></input>
+            <select value={currency} onChange={(e) => dispatch(setCurrencyWithExchange(e.target.value))}>
+                {[currency, ...targetCurrencies].map((currency, idx) => (
                     <option value={currency} key={idx}>
                         {currency}
                     </option>
@@ -45,4 +47,4 @@ const InputDiv = styled.div`
     }
 `;
 
-export default InputComp;
+export default MoneyComp;

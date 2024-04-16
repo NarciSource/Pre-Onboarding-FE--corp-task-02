@@ -1,13 +1,13 @@
 import "./App.css";
-import InputComp from "./components/InputComp";
-import TransTabComp from "./components/TransTabComp";
+import MoneyComp from "./components/MoneyInputComp";
+import ExchangeTabComp from "./components/ExchangeTabComp";
 import styled from "styled-components";
 
 function App() {
     return (
         <AppDiv>
-            <InputComp></InputComp>
-            <TransTabComp></TransTabComp>
+            <MoneyComp></MoneyComp>
+            <ExchangeTabComp></ExchangeTabComp>
         </AppDiv>
     );
 }

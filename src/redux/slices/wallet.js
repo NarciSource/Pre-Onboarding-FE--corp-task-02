@@ -8,7 +8,7 @@ const initialState = {
     currency: default_currency,
     targetCurrencies: currencies.filter((currency) => currency !== default_currency),
     exchangeRate: {},
-    status: "prepend",
+    status: "prepare",
 };
 
 const walletSlice = createSlice({
