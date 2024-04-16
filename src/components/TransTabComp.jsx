@@ -7,9 +7,9 @@ function TransTabComp() {
 
     const sourceMoney = useSelector((state) => state.wallet.money); // observer
     const sourceCurrency = useSelector((state) => state.wallet.currency);
+    const exchange = useSelector((state) => state.wallet.exchange);
 
     const [targetCurrency, setTargetCurrency] = useState(currencies[0]);
-    const [transMoney, setTransMoney] = useState(0);
 
     return (
         <div>
@@ -24,10 +24,7 @@ function TransTabComp() {
             </div>
             <div>
                 <p>
-                    {sourceCurrency}에서 {targetCurrency}로 환전
-                </p>
-                <p>
-                    환전금액: {sourceMoney} {transMoney}
+                    {targetCurrency} {sourceMoney * exchange[targetCurrency]}
                 </p>
                 <p>기준일: {dayjs(new Date()).format("YYYY-MMM-DD")}</p>
             </div>

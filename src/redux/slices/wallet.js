@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     money: 0,
     currency: "USD",
+    exchange: {},
 };
 
 const walletSlice = createSlice({
@@ -20,8 +21,11 @@ const walletSlice = createSlice({
         setCurrency: (state, action) => {
             state.currency = action.payload;
         },
+        setExchange: (state, action) => {
+            state.exchange = action.payload;
+        },
     },
 });
 
-export const { setMoney, setCurrency } = walletSlice.actions;
+export const { setMoney, setCurrency, setExchange } = walletSlice.actions;
 export default walletSlice.reducer;

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setMoney, setCurrency } from "../redux/slices/wallet";
+import ExchangeComp from "./ExchangeComp";
 
 function InputComp() {
     const currencies = ["USD", "CAD", "KRW", "HKD", "JPY", "CNY"];
@@ -16,6 +17,7 @@ function InputComp() {
                     <option value={currency}> {currency}</option>
                 ))}
             </select>
+            <ExchangeComp></ExchangeComp>
         </div>
     );
 }
