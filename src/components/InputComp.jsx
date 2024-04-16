@@ -18,8 +18,10 @@ function InputComp() {
             <select
                 value={sourceCurrency}
                 onChange={(e) => {
-                    dispatch(setCurrency(e.target.value));
-                    dispatch(fetchExchange({ base: sourceCurrency, symbols: targetCurrencies }));
+                    dispatch(async (dispatch, getState) => {
+                        dispatch(setCurrency(e.target.value));
+                        dispatch(fetchExchange({ base: getState().wallet.currency, symbols: getState().wallet.targetCurrencies }));
+                    });
                 }}
             >
                 {[sourceCurrency, ...targetCurrencies].map((currency, idx) => (
