@@ -8,24 +8,23 @@ function InputComp() {
     const sourceCurrency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
 
+    const setCurrencyWithExchange = (value) => (dispatch, getState) => {
+        dispatch(setCurrency(value));
+        dispatch(fetchExchange({ base: getState().wallet.currency, symbols: getState().wallet.targetCurrencies }));
+    };
+
     useEffect(() => {
-        dispatch(fetchExchange({ base: sourceCurrency, symbols: targetCurrencies }));
+        dispatch(setCurrencyWithExchange(sourceCurrency));
     }, []);
 
     return (
         <div>
             <input value={sourceMoney} onChange={(e) => dispatch(setMoney(e.target.value))}></input>
-            <select
-                value={sourceCurrency}
-                onChange={(e) => {
-                    dispatch(async (dispatch, getState) => {
-                        dispatch(setCurrency(e.target.value));
-                        dispatch(fetchExchange({ base: getState().wallet.currency, symbols: getState().wallet.targetCurrencies }));
-                    });
-                }}
-            >
+            <select value={sourceCurrency} onChange={(e) => dispatch(setCurrencyWithExchange(e.target.value))}>
                 {[sourceCurrency, ...targetCurrencies].map((currency, idx) => (
-                    <option value={currency}> {currency}</option>
+                    <option value={currency} key={idx}>
+                        {currency}
+                    </option>
                 ))}
             </select>
         </div>

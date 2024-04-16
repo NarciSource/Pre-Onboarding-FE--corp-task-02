@@ -14,7 +14,9 @@ function TransTabComp() {
             <div>
                 <ul>
                     {targetCurrencies.map((currency, idx) => (
-                        <li onClick={(e) => setSelectedCurrency(currency)}>{currency}</li>
+                        <li key={idx} onClick={(e) => setSelectedCurrency(currency)}>
+                            {currency}
+                        </li>
                     ))}
                 </ul>
             </div>
