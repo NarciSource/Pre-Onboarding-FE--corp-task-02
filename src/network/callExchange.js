@@ -1,6 +1,8 @@
 import keys from "../keys.json";
-export default async function callExchange(base, symbols) {
-    var requestOptions = {
+
+export default async function callExchange({ base, symbols }) {
+    const url = `https://api.apilayer.com/exchangerates_data/latest?symbols=${symbols.toString()}&base=${base}`;
+    const requestOptions = {
         method: "GET",
         redirect: "follow",
         headers: {
@@ -8,5 +10,6 @@ export default async function callExchange(base, symbols) {
         },
     };
 
-    return (await fetch(`https://api.apilayer.com/exchangerates_data/latest?symbols=${symbols.toString()}&base=${base}`, requestOptions)).json();
+    const response = await fetch(url, requestOptions);
+    return response.json();
 }
