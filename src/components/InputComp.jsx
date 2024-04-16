@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setMoney, setCurrency, fetchExchange } from "../redux/slices/wallet";
+import styled from "styled-components";
 
 function InputComp() {
     const dispatch = useDispatch(); // noticer
@@ -18,7 +19,7 @@ function InputComp() {
     }, []);
 
     return (
-        <div>
+        <InputDiv>
             <input value={sourceMoney} onChange={(e) => dispatch(setMoney(e.target.value))}></input>
             <select value={sourceCurrency} onChange={(e) => dispatch(setCurrencyWithExchange(e.target.value))}>
                 {[sourceCurrency, ...targetCurrencies].map((currency, idx) => (
@@ -27,8 +28,21 @@ function InputComp() {
                     </option>
                 ))}
             </select>
-        </div>
+        </InputDiv>
     );
 }
+
+const InputDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+
+    input {
+        height: 30px;
+        padding: 0 0 0 10px;
+    }
+    select {
+        padding: 0 10px;
+    }
+`;
 
 export default InputComp;
