@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -28,7 +29,7 @@ function TransTabComp() {
                 <p>
                     환전금액: {sourceMoney} {transMoney}
                 </p>
-                <p>기준일: {new Date().toString()}</p>
+                <p>기준일: {dayjs(new Date()).format("YYYY-MMM-DD")}</p>
             </div>
         </div>
     );
