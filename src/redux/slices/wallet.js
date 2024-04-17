@@ -21,7 +21,7 @@ const walletSlice = createSlice({
             if (isNaN(money)) {
                 console.log("숫자만 입력", money);
             } else {
-                state.money = Intl.NumberFormat().format(money > 1000 ? 1000 : money);
+                state.money = money;
             }
         },
         setCurrency: (state, action) => {

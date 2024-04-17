@@ -7,7 +7,7 @@ import { ColorRing } from "react-loader-spinner";
 function ExchangeTabComp() {
     const sourceMoney = useSelector((state) => state.wallet.money); // observer
     const exchangeRate = useSelector((state) => state.wallet.exchangeRate);
-    const updateAt = useSelector((state) => state.wallet.updateAt);
+    const updateAt = dayjs(new Date(useSelector((state) => state.wallet.updateAt)));
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
     const status = useSelector((state) => state.wallet.status);
 
@@ -28,11 +28,11 @@ function ExchangeTabComp() {
             </LoaderContianer>
             <TabContents>
                 <p className="exchangeContent">
-                    {selectedCurrency} {typeof exchangedMoney === "number" ? exchangedMoney : "?"}
+                    {selectedCurrency} {exchangedMoney || "?"}
                 </p>
                 <p>
                     기준일: <br />
-                    {dayjs(new Date(updateAt)).format("YYYY-MMM-DD")}
+                    {updateAt.isValid() ? updateAt.format("YYYY-MMM-DD") : "?"}
                 </p>
             </TabContents>
         </TabDiv>

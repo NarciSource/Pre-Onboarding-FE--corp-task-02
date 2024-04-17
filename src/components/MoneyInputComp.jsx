@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setMoney, setCurrency, fetchExchange } from "../redux/slices/wallet";
 import styled from "styled-components";
@@ -11,19 +10,18 @@ function MoneyComp() {
     const currency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
     // action
-    const setCurrencyWithExchange = (value) => (dispatch, getState) => {
-        dispatch(setCurrency(value));
-        dispatch(fetchExchange({ base: getState().wallet.currency, symbols: getState().wallet.targetCurrencies }));
-    };
-
-    useEffect(() => {
-        dispatch(setCurrencyWithExchange(currency));
-    }, []);
+    const sequentialDispatch = (firstAction, secondAction) => (value) =>
+        dispatch((dispatch, getState) => {
+            dispatch(firstAction(value));
+            if (getState().wallet.money >= 1000) {
+                dispatch(secondAction({ base: getState().wallet.currency, symbols: getState().wallet.targetCurrencies }));
+            }
+        });
 
     return (
         <InputDiv>
-            <input value={money} onChange={(e) => dispatch(setMoney(e.target.value))}></input>
-            <select value={currency} onChange={(e) => dispatch(setCurrencyWithExchange(e.target.value))}>
+            <input value={Intl.NumberFormat().format(money)} onChange={(e) => sequentialDispatch(setMoney, fetchExchange)(e.target.value)}></input>
+            <select value={currency} onChange={(e) => sequentialDispatch(setCurrency, fetchExchange)(e.target.value)}>
                 {[currency, ...targetCurrencies].map((currency, idx) => (
                     <option value={currency} key={idx}>
                         {currency}
