@@ -6,9 +6,11 @@ import styled from "styled-components";
 function ExchangeTabComp() {
     const sourceMoney = useSelector((state) => state.wallet.money); // observer
     const exchangeRate = useSelector((state) => state.wallet.exchangeRate);
+    const updateAt = useSelector((state) => state.wallet.updateAt);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
 
     const [selectedCurrency, setSelectedCurrency] = useState(targetCurrencies[0]);
+    const exchangedMoney = sourceMoney * exchangeRate[selectedCurrency];
 
     return (
         <TabDiv>
@@ -21,11 +23,11 @@ function ExchangeTabComp() {
             </TabMenu>
             <TabContents>
                 <p className="exchangeContent">
-                    {selectedCurrency} {sourceMoney * exchangeRate[selectedCurrency] || "?"}
+                    {selectedCurrency} {typeof exchangedMoney === "number" ? exchangedMoney : "?"}
                 </p>
                 <p>
                     기준일: <br />
-                    {dayjs(new Date()).format("YYYY-MMM-DD")}
+                    {dayjs(new Date(updateAt)).format("YYYY-MMM-DD")}
                 </p>
             </TabContents>
         </TabDiv>

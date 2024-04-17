@@ -9,6 +9,7 @@ const initialState = {
     targetCurrencies: currencies.filter((currency) => currency !== default_currency),
     exchangeRate: {},
     status: "prepare",
+    updateAt: "",
 };
 
 const walletSlice = createSlice({
@@ -37,6 +38,7 @@ const walletSlice = createSlice({
                 state.status = "succeeded";
                 console.log("api call succeeded", action.payload);
                 state.exchangeRate = action.payload.rates;
+                state.updateAt = action.payload.date;
             })
             .addCase(fetchExchange.rejected, (state, action) => {
                 state.status = "failed";
