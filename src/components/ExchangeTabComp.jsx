@@ -2,12 +2,14 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { ColorRing } from "react-loader-spinner";
 
 function ExchangeTabComp() {
     const sourceMoney = useSelector((state) => state.wallet.money); // observer
     const exchangeRate = useSelector((state) => state.wallet.exchangeRate);
     const updateAt = useSelector((state) => state.wallet.updateAt);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
+    const status = useSelector((state) => state.wallet.status);
 
     const [selectedCurrency, setSelectedCurrency] = useState(targetCurrencies[0]);
     const exchangedMoney = sourceMoney * exchangeRate[selectedCurrency];
@@ -21,6 +23,9 @@ function ExchangeTabComp() {
                     </li>
                 ))}
             </TabMenu>
+            <LoaderContianer>
+                <ColorRing visible={status === "loading"} />
+            </LoaderContianer>
             <TabContents>
                 <p className="exchangeContent">
                     {selectedCurrency} {typeof exchangedMoney === "number" ? exchangedMoney : "?"}
@@ -37,6 +42,7 @@ function ExchangeTabComp() {
 const borderColor = "darkgray";
 
 const TabDiv = styled.div`
+    position: relative;
     margin: 30px 0 0 0;
     border: 2px solid ${borderColor};
 `;
@@ -71,6 +77,17 @@ const TabContents = styled.div`
     .exchangeContent {
         font-size: 20px;
         font-weight: bold;
+    }
+`;
+
+const LoaderContianer = styled.div`
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 40px);
+
+    svg {
+        width: 100%;
+        height: 100%;
     }
 `;
 
