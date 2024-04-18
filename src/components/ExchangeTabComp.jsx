@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "react-query";
 import styled from "styled-components";
@@ -6,13 +6,20 @@ import dayjs from "dayjs";
 import { ColorRing } from "react-loader-spinner";
 import callExchange from "../network/callExchange";
 
+function useReduxReflatedState(initialSelector) {
+    const reduxState = useSelector(initialSelector);
+    const [state, setState] = useState(reduxState[0]);
+
+    useEffect(() => setState(reduxState.includes(state) ? state : reduxState[0]), [state, reduxState]);
+    return [state, setState];
+}
 function ExchangeTabComp() {
     // observer
     const sourceMoney = useSelector((state) => state.wallet.money);
     const sourceCurrency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
     // useState
-    const [selectedCurrency, setSelectedCurrency] = useState(targetCurrencies[0]);
+    const [selectedCurrency, setSelectedCurrency] = useReduxReflatedState((state) => state.wallet.targetCurrencies);
     // useQuery
     const { status, data } = useQuery(["apiData", sourceMoney, sourceCurrency, targetCurrencies], () => callExchange({ base: sourceCurrency, symbols: targetCurrencies }), {
         enabled: sourceMoney >= 1000,
