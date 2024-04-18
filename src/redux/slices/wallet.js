@@ -1,15 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import callExchange from "../../network/callExchange";
+import { createSlice } from "@reduxjs/toolkit";
 
 const currencies = ["USD", "CAD", "KRW", "HKD", "JPY", "CNY"];
-const default_currency = currencies[0];
+const defaultCurrency = currencies[0];
 const initialState = {
     money: 0,
-    currency: default_currency,
-    targetCurrencies: currencies.filter((currency) => currency !== default_currency),
-    exchangeRate: {},
-    status: "prepare",
-    updateAt: "",
+    currency: defaultCurrency,
+    targetCurrencies: currencies.filter((currency) => currency !== defaultCurrency),
 };
 
 const walletSlice = createSlice({
@@ -29,24 +25,7 @@ const walletSlice = createSlice({
             state.targetCurrencies = currencies.filter((currency) => currency !== state.currency);
         },
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchExchange.pending, (state, action) => {
-                state.status = "loading";
-            })
-            .addCase(fetchExchange.fulfilled, (state, action) => {
-                state.status = "succeeded";
-                console.log("api call succeeded", action.payload);
-                state.exchangeRate = action.payload.rates;
-                state.updateAt = action.payload.date;
-            })
-            .addCase(fetchExchange.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
-            });
-    },
 });
 
-export const fetchExchange = createAsyncThunk("GET/exchange", (args, thunkAPI) => callExchange(args));
 export const { setMoney, setCurrency } = walletSlice.actions;
 export default walletSlice.reducer;

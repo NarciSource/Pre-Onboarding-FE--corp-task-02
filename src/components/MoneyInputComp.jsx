@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setMoney, setCurrency, fetchExchange } from "../redux/slices/wallet";
+import { setMoney, setCurrency } from "../redux/slices/wallet";
 import styled from "styled-components";
-import { useEffect } from "react";
 
 function MoneyComp() {
     // noticer
@@ -10,13 +9,6 @@ function MoneyComp() {
     const money = useSelector((state) => state.wallet.money);
     const currency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
-
-    useEffect(() => {
-        // fetchExchange after setMoney or setCurrency
-        if (money >= 1000) {
-            dispatch(fetchExchange({ base: currency, symbols: targetCurrencies }));
-        }
-    }, [money, currency]);
 
     return (
         <InputDiv>

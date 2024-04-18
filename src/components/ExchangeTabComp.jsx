@@ -1,17 +1,31 @@
-import dayjs from "dayjs";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useQuery } from "react-query";
 import styled from "styled-components";
+import dayjs from "dayjs";
 import { ColorRing } from "react-loader-spinner";
+import callExchange from "../network/callExchange";
 
 function ExchangeTabComp() {
-    const sourceMoney = useSelector((state) => state.wallet.money); // observer
-    const exchangeRate = useSelector((state) => state.wallet.exchangeRate);
-    const updateAt = dayjs(new Date(useSelector((state) => state.wallet.updateAt)));
+    // observer
+    const sourceMoney = useSelector((state) => state.wallet.money);
+    const sourceCurrency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
-    const status = useSelector((state) => state.wallet.status);
-
+    // useState
     const [selectedCurrency, setSelectedCurrency] = useState(targetCurrencies[0]);
+    // useQuery
+    const { status, data } = useQuery(["apiData", sourceMoney, sourceCurrency, targetCurrencies], () => callExchange({ base: sourceCurrency, symbols: targetCurrencies }), {
+        enabled: sourceMoney >= 1000,
+        refetchOnWindowFocus: false,
+        refetchInterval: 5 * 60 * 1000,
+        retry: 0,
+        initialData: {
+            date: null,
+            rates: {},
+        },
+    });
+    const exchangeRate = data.rates;
+    const updateAt = data.date && dayjs(new Date(data.date));
     const exchangedMoney = sourceMoney * exchangeRate[selectedCurrency];
 
     return (
@@ -32,7 +46,7 @@ function ExchangeTabComp() {
                 </p>
                 <p>
                     기준일: <br />
-                    {updateAt.isValid() ? updateAt.format("YYYY-MMM-DD") : "?"}
+                    {updateAt?.format("YYYY-MMM-DD") || "?"}
                 </p>
             </TabContents>
         </TabDiv>
