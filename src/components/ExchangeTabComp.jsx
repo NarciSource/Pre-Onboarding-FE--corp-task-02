@@ -21,7 +21,8 @@ function ExchangeTabComp() {
     // useState
     const [selectedCurrency, setSelectedCurrency] = useReduxReflatedState((state) => state.wallet.targetCurrencies);
     // useQuery
-    const { status, data } = useQuery(["apiData", sourceMoney, sourceCurrency, targetCurrencies], () => callExchange({ base: sourceCurrency, symbols: targetCurrencies }), {
+    const queryFn = () => callExchange({ base: sourceCurrency, symbols: targetCurrencies });
+    const { isFetching, data } = useQuery(["apiData", sourceMoney, sourceCurrency, targetCurrencies], queryFn, {
         enabled: sourceMoney >= 1000,
         refetchOnWindowFocus: false,
         refetchInterval: 5 * 60 * 1000,
@@ -45,7 +46,7 @@ function ExchangeTabComp() {
                 ))}
             </TabMenu>
             <LoaderContianer>
-                <ColorRing visible={status === "loading"} />
+                <ColorRing visible={isFetching} />
             </LoaderContianer>
             <TabContents>
                 <p className="exchangeContent">
