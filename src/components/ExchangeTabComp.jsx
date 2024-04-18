@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { ColorRing } from "react-loader-spinner";
 import callExchange from "../network/callExchange";
 
-function useReduxReflatedState(initialSelector) {
+function useReduxReflectedState(initialSelector) {
     const reduxState = useSelector(initialSelector);
     const [state, setState] = useState(reduxState[0]);
 
@@ -19,7 +19,7 @@ function ExchangeTabComp() {
     const sourceCurrency = useSelector((state) => state.wallet.currency);
     const targetCurrencies = useSelector((state) => state.wallet.targetCurrencies);
     // useState
-    const [selectedCurrency, setSelectedCurrency] = useReduxReflatedState((state) => state.wallet.targetCurrencies);
+    const [selectedCurrency, setSelectedCurrency] = useReduxReflectedState((state) => state.wallet.targetCurrencies);
     // useQuery
     const queryFn = () => callExchange({ base: sourceCurrency, symbols: targetCurrencies });
     const { isFetching, data } = useQuery(["apiData", sourceMoney, sourceCurrency, targetCurrencies], queryFn, {
@@ -32,9 +32,9 @@ function ExchangeTabComp() {
             rates: {},
         },
     });
-    const exchangeRate = data.rates;
+    const exchangeRates = data.rates;
     const updateAt = data.date && dayjs(new Date(data.date));
-    const exchangedMoney = sourceMoney * exchangeRate[selectedCurrency];
+    const exchangedMoney = sourceMoney * exchangeRates[selectedCurrency];
 
     return (
         <TabDiv>

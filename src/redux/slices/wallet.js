@@ -13,7 +13,7 @@ const walletSlice = createSlice({
     initialState,
     reducers: {
         setMoney: (state, action) => {
-            const money = action.payload.replace(",", "");
+            const money = action.payload.replaceAll(",", "");
             if (isNaN(money)) {
                 console.log("숫자만 입력", money);
             } else {
