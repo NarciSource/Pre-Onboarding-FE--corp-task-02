@@ -2,51 +2,50 @@
 
 > 사용자가 입력한 수치와 통화에 따라, 각 탭에 환율 변환 정보를 표시
 
-
 ## 🚩 목차
-- [🛠️ 기술 스택](#%EF%B8%8F-기술-스택)
-- [🎥 데모](#-데모)
-- [⚙️ 주요 기능](#%EF%B8%8F-주요-기능)
-- [🪝 사용한 리액트 훅](#-사용한-리액트-훅)
-- [🎨 UI](#-ui)
-- [📂 프로젝트 구조](#-프로젝트-구조)
-- [🚀 실행 방법](#-실행-방법)
+
+-   [🛠️ 기술 스택](#%EF%B8%8F-기술-스택)
+-   [🎥 데모](#-데모)
+-   [⚙️ 주요 기능](#%EF%B8%8F-주요-기능)
+-   [🪝 사용한 리액트 훅](#-사용한-리액트-훅)
+-   [🎨 UI](#-ui)
+-   [📂 프로젝트 구조](#-프로젝트-구조)
+-   [🚀 실행 방법](#-실행-방법)
 
 ## 🛠️ 기술 스택
-- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![CSS](https://img.shields.io/badge/CSS3-%231572B6?style=flat-square&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-%23E34F26?style=flat-square&logo=html5&logoColor=white)
-- [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black)](https://reactjs.org) [![CRA](https://img.shields.io/badge/Create%20React%20App-09D3AC?style=flat-square&logo=createreactapp&logoColor=white)](https://create-react-app.dev/) [![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=flat-square&logo=reactrouter&logoColor=white)](https://reactrouter.com/en/main) [![Redux](https://img.shields.io/badge/Redux-%23764ABC?style=flat-square&logo=redux&logoColor=white
-)](https://react-redux.js.org/) [![React Query](https://img.shields.io/badge/React%20Query-%23FF4154?style=flat-square&logo=reactquery&logoColor=white)](https://tanstack.com/query/v4/docs/framework/react/overview)
-- [![styled-components](https://img.shields.io/badge/styled%20components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white)](https://styled-components.com/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)
 
+-   ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![CSS](https://img.shields.io/badge/CSS3-%231572B6?style=flat-square&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-%23E34F26?style=flat-square&logo=html5&logoColor=white) [![Fetch API](https://img.shields.io/badge/Fetch%20API-%23E34F26?style=flat-square)](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)
+-   [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black)](https://reactjs.org) [![CRA](https://img.shields.io/badge/Create%20React%20App-09D3AC?style=flat-square&logo=createreactapp&logoColor=white)](https://create-react-app.dev/) [![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=flat-square&logo=reactrouter&logoColor=white)](https://reactrouter.com/en/main) [![Redux](https://img.shields.io/badge/Redux-%23764ABC?style=flat-square&logo=redux&logoColor=white)](https://react-redux.js.org/) [![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-%23764ABC?style=flat-square)](https://redux-toolkit.js.org/) [![React Query](https://img.shields.io/badge/React%20Query-%23FF4154?style=flat-square&logo=reactquery&logoColor=white)](https://tanstack.com/query/v4/docs/framework/react/overview)
+-   [![styled-components](https://img.shields.io/badge/styled%20components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white)](https://styled-components.com/)
 
 ## 🎥 데모
-![Demo](https://github.com/NarciSource/Pre-Onboarding-FE--corp-task-02/assets/26417221/f82f9bfb-57b9-49c9-8b70-4731770a8eaa)
 
+![Demo](https://github.com/NarciSource/Pre-Onboarding-FE--corp-task-02/assets/26417221/f82f9bfb-57b9-49c9-8b70-4731770a8eaa)
 
 ## ⚙️ 주요 기능
 
-- 사용자가 입력한 수치와 통화에 따라, 각 탭에 환율 변환 정보를 표시
-- 입력칸에는 숫자만 입력 가능
-- 1000 이상 입력 시 환율 변환
-- 입력칸 숫자에 천단위 구분자 추가
-- 드롭 다운 메뉴에 USD,CAD,KRW, HKD,JPY,CNY 통화 제시
-- 드롭 다운 선택된 통화는 탭에서 빠짐
-- 사용자의 수치 입력 혹은 드롭다운 메뉴를 이용한 통화 변경시 변경될 환율과 기준일 정보는 동기화 되어 변경
-- 날짜 포맷은 2022-Jan-01
-- 상태 관리 Redux 사용
+-   사용자가 입력한 수치와 통화에 따라, 각 탭에 환율 변환 정보를 표시
+-   입력칸에는 숫자만 입력 가능
+-   1000 이상 입력 시 환율 변환
+-   입력칸 숫자에 천단위 구분자 추가
+-   드롭 다운 메뉴에 USD,CAD,KRW, HKD,JPY,CNY 통화 제시
+-   드롭 다운 선택된 통화는 탭에서 빠짐
+-   사용자의 수치 입력 혹은 드롭다운 메뉴를 이용한 통화 변경시 변경될 환율과 기준일 정보는 동기화 되어 변경
+-   날짜 포맷은 2022-Jan-01
+-   상태 관리 Redux 사용
 
 ## 🪝 사용한 리액트 훅
 
-- React hooks - useState, useEffect
-- React Redux hooks - useSelector, useDispatch
-- React Query hooks - useQuery
+-   React hooks - useState, useEffect
+-   React Redux hooks - useSelector, useDispatch
+-   React Query hooks - useQuery
 
 ## 🎨 UI
+
 ![UI](https://github.com/NarciSource/Pre-Onboarding-FE--corp-task-02/assets/26417221/14b38d2c-34be-4d98-ba20-5b713df2f780)
 
 ## 📂 프로젝트 구조
+
 ```
 corp-task--02
 ├─ .git
@@ -159,4 +158,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 #### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
