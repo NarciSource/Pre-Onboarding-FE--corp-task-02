@@ -1,4 +1,3 @@
-import "./App.css";
 import MoneyComp from "./components/MoneyInputComp";
 import ExchangeTabComp from "./components/ExchangeTabComp";
 import styled from "styled-components";

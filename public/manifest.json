@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "환율 변환",
+  "name": "환율 변환 서비스",
   "icons": [
     {
       "src": "favicon.ico",
