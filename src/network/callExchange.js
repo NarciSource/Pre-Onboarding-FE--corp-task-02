@@ -4,7 +4,7 @@ export default async function callExchange({ base, symbols }) {
         method: "GET",
         redirect: "follow",
         headers: {
-            apikey: process.env.APILAYER_APIKEY,
+            apikey: process.env.REACT_APP_APILAYER_APIKEY,
         },
     };
 

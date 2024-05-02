@@ -86,7 +86,7 @@ corp-task--02
 
 ### 추가 정보
 
-.env 파일로 APILAYER_APIKEY에 [API KEY](https://apilayer.com/marketplace/exchangerates_data-api)로 호출 횟수(월 100회)로 설정
+.env 파일로 REACT_APP_APILAYER_APIKEY에 [API KEY](https://apilayer.com/marketplace/exchangerates_data-api)로 호출 횟수(월 100회)로 설정
 
 ### Getting Started with Create React App
 
