@@ -14,15 +14,21 @@
 
 ## 🛠️ 기술 스택
 
+-   [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/features/actions) [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat-square&logo=githubpages)](https://pages.github.com/)
+
 -   ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![CSS](https://img.shields.io/badge/CSS3-%231572B6?style=flat-square&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-%23E34F26?style=flat-square&logo=html5&logoColor=white) [![Fetch API](https://img.shields.io/badge/Fetch%20API-%23E34F26?style=flat-square)](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)
 -   [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black)](https://reactjs.org) [![CRA](https://img.shields.io/badge/Create%20React%20App-09D3AC?style=flat-square&logo=createreactapp&logoColor=white)](https://create-react-app.dev/) [![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=flat-square&logo=reactrouter&logoColor=white)](https://reactrouter.com/en/main) [![Redux](https://img.shields.io/badge/Redux-%23764ABC?style=flat-square&logo=redux&logoColor=white)](https://react-redux.js.org/) [![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-%23764ABC?style=flat-square)](https://redux-toolkit.js.org/) [![React Query](https://img.shields.io/badge/React%20Query-%23FF4154?style=flat-square&logo=reactquery&logoColor=white)](https://tanstack.com/query/v4/docs/framework/react/overview)
 -   [![styled-components](https://img.shields.io/badge/styled%20components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white)](https://styled-components.com/)
 
 ## 🎥 데모
 
+[데모 보기](https://narcisource.github.io/Pre-Onboarding-FE--corp-task-02)
+
 ![Demo](https://github.com/NarciSource/Pre-Onboarding-FE--corp-task-02/assets/26417221/f82f9bfb-57b9-49c9-8b70-4731770a8eaa)
 
 ## ⚙️ 주요 기능
+
+-   github action을 이용하여 월,수,금,토 9시마다 환율 정보를 github repo에 저장
 
 -   사용자가 입력한 수치와 통화에 따라, 각 탭에 환율 변환 정보를 표시
 -   입력칸에는 숫자만 입력 가능
@@ -48,9 +54,15 @@
 
 ```
 corp-task--02
+├─ .env.sample
 ├─ .git
+├─ .github
+│  ├─ scripts
+│  │  ├─ package.json
+│  │  └─ saveTodayExchange.js
+│  └─ workflows
+│     └─ update-exchange-rates.yml
 ├─ .gitignore
-├─ .env.local
 ├─ package-lock.json
 ├─ package.json
 ├─ public
@@ -59,26 +71,21 @@ corp-task--02
 │  ├─ logo192.png
 │  ├─ logo512.png
 │  ├─ manifest.json
-│  └─ robots.txt
+│  ├─ robots.txt
+│  └─ todayExchangeRates.json
 ├─ README.md
 └─ src
-   ├─ App.css
    ├─ App.jsx
-   ├─ App.test.js
    ├─ components
    │  ├─ ExchangeTabComp.jsx
    │  └─ MoneyInputComp.jsx
-   ├─ index.css
    ├─ index.js
-   ├─ logo.svg
    ├─ network
    │  └─ callExchange.js
-   ├─ redux
-   │  ├─ slices
-   │  │  └─ wallet.js
-   │  └─ store.js
-   ├─ reportWebVitals.js
-   └─ setupTests.js
+   └─ redux
+      ├─ slices
+      │  └─ wallet.js
+      └─ store.js
 
 ```
 
