@@ -14,10 +14,16 @@ async function todayExchange() {
         },
     };
 
-    const response = await fetch(url, requestOptions);
-    const data = await response.json();
+    try {
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
 
-    fs.writeFileSync("todayExchangeRates.json", JSON.stringify(data, null, 2));
+        fs.writeFileSync("todayExchangeRates.json", JSON.stringify(data, null, 2));
+        process.exit(0);
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
 }
 
 todayExchange();
