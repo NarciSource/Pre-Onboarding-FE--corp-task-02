@@ -2,23 +2,27 @@ import fetch from "node-fetch";
 import fs from "fs";
 
 async function todayExchange() {
-    const base = "USD";
-    const symbols = ["CAD", "KRW", "HKD", "JPY", "CNY"];
-    const apikey = process.env.REACT_APP_APILAYER_APIKEY;
-    const url = `https://api.apilayer.com/exchangerates_data/latest?symbols=${symbols.toString()}&base=${base}`;
-    const requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        headers: {
-            apikey,
-        },
-    };
-
     try {
-        const response = await fetch(url, requestOptions);
-        const data = await response.json();
+        const apikey = process.env.REACT_APP_APILAYER_APIKEY;
+        const symbols = ["CAD", "KRW", "HKD", "JPY", "CNY"];
+        let multiple_data = {};
 
-        fs.writeFileSync("todayExchangeRates.json", JSON.stringify(data, null, 2));
+        for (const base of symbols) {
+            const url = `https://api.apilayer.com/exchangerates_data/latest?symbols=${symbols.toString()}&base=${base}`;
+            const requestOptions = {
+                method: "GET",
+                redirect: "follow",
+                headers: {
+                    apikey,
+                },
+            };
+
+            const response = await fetch(url, requestOptions);
+            const data = await response.json();
+            multiple_data[base] = data;
+        }
+
+        fs.writeFileSync("todayExchangeRates.json", JSON.stringify(multiple_data, null, 2));
         process.exit(0);
     } catch (err) {
         console.error(err);

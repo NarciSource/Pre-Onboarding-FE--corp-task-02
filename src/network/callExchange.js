@@ -1,7 +1,6 @@
 export default async function callExchange({ base, symbols }) {
     const apikey = process.env.REACT_APP_APILAYER_APIKEY;
-    const url = apikey ? `https://api.apilayer.com/exchangerates_data/latest?symbols=${symbols.toString()}&base=${base}`
-                       : "/todayExchangeRates.json";
+    const url = apikey ? `https://api.apilayer.com/exchangerates_data/latest?symbols=${symbols.toString()}&base=${base}` : "/todayExchangeRates.json";
     const requestOptions = {
         method: "GET",
         redirect: "follow",
@@ -11,5 +10,6 @@ export default async function callExchange({ base, symbols }) {
     };
 
     const response = await fetch(url, requestOptions);
-    return response.json();
+    const json_data = response.json();
+    return json_data[base] || json_data;
 }
