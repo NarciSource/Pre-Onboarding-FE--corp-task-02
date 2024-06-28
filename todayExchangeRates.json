@@ -1,1 +1,67 @@
-{}
+{
+  "CAD": {
+    "success": true,
+    "timestamp": 1719565383,
+    "base": "CAD",
+    "date": "2024-06-28",
+    "rates": {
+      "CAD": 1,
+      "KRW": 1005.534484,
+      "HKD": 5.695594,
+      "JPY": 117.361261,
+      "CNY": 5.299506
+    }
+  },
+  "KRW": {
+    "success": true,
+    "timestamp": 1719565383,
+    "base": "KRW",
+    "date": "2024-06-28",
+    "rates": {
+      "CAD": 0.000994,
+      "KRW": 1,
+      "HKD": 0.005664,
+      "JPY": 0.116715,
+      "CNY": 0.00527
+    }
+  },
+  "HKD": {
+    "success": true,
+    "timestamp": 1719565383,
+    "base": "HKD",
+    "date": "2024-06-28",
+    "rates": {
+      "CAD": 0.175574,
+      "KRW": 176.546021,
+      "HKD": 1,
+      "JPY": 20.605622,
+      "CNY": 0.930457
+    }
+  },
+  "JPY": {
+    "success": true,
+    "timestamp": 1719565383,
+    "base": "JPY",
+    "date": "2024-06-28",
+    "rates": {
+      "CAD": 0.008521,
+      "KRW": 8.567857,
+      "HKD": 0.04853,
+      "JPY": 1,
+      "CNY": 0.045155
+    }
+  },
+  "CNY": {
+    "success": true,
+    "timestamp": 1719565383,
+    "base": "CNY",
+    "date": "2024-06-28",
+    "rates": {
+      "CAD": 0.188697,
+      "KRW": 189.741174,
+      "HKD": 1.074741,
+      "JPY": 22.145698,
+      "CNY": 1
+    }
+  }
+}
